@@ -20,20 +20,20 @@ app.prepare().then(() => {
   server.use(session(server));
   server.keys = [SHOPIFY_SECRET];
 
-  server.use(
-    createShopifyAuth({
-      apiKey: SHOPIFY_API_KEY,
-      secret: SHOPIFY_SECRET,
-      scopes: ['write_products'],
-      afterAuth(ctx) {
-        const { shop, accessToken } = ctx.session;
+  //   server.use(
+  //     createShopifyAuth({
+  //       apiKey: SHOPIFY_API_KEY,
+  //       secret: SHOPIFY_SECRET,
+  //       scopes: ['write_products'],
+  //       afterAuth(ctx) {
+  //         const { shop, accessToken } = ctx.session;
 
-        console.log('We did it!', shop, accessToken);
+  //         console.log('We did it!', shop, accessToken);
 
-        ctx.redirect('/');
-      }
-    })
-  );
+  //         ctx.redirect('/');
+  //       }
+  //     })
+  //   );
 
   router.get('*', async ctx => {
     await handle(ctx.req, ctx.res);
@@ -45,7 +45,7 @@ app.prepare().then(() => {
     await next();
   });
 
-  server.use(verifyRequest());
+  //   server.use(verifyRequest());
 
   server.use(router.routes());
   server.listen(port, () => {
