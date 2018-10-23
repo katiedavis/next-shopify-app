@@ -1,4 +1,4 @@
 import { GET_SHOP } from '../graphql/Query';
 import { Query } from 'react-apollo';
-
-export default () => <div>hi</div>;
+import { TextStyle } from '@shopify/polaris';
+export default () => <TextStyle>hi</TextStyle>;
