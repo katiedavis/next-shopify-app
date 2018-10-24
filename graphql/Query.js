@@ -1,9 +1,17 @@
 import gql from 'graphql-tag';
 
-export const GET_SHOP = gql`
-  query {
-    shop {
-      name
+export const GET_PRODUCTS = gql`
+  query shop {
+    products(first: 250) {
+      edges {
+        node {
+          id
+          title
+        }
+      }
+      pageInfo {
+        hasNextPage
+      }
     }
   }
 `;

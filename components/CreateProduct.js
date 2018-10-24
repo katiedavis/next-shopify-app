@@ -17,25 +17,17 @@ class CreateProduct extends React.Component {
   state = {
     name: this.props.product.title,
     description: this.props.product.body_html,
-    category: '',
-    price: '',
     completed: false,
-    type: this.props.product.product_type
+    id: this.props.product.id
   };
   render() {
+    const { name, description } = this.state;
     console.log(this.props);
-    const { name, description, category, price } = this.state;
-    const options = [
-      { label: 'Today', value: 'today' },
-      { label: 'Yesterday', value: 'yesterday' },
-      { label: 'Last 7 days', value: 'lastWeek' }
-    ];
-
-    console.log('this state', this.state);
-
     return (
       <Mutation mutation={UPDATE_PRODUCT} onCompleted={this.completedMutation}>
         {(handleSubmit, mutationResults) => {
+          console.log(mutationResults);
+          console.log('state', this.state);
           return (
             <Layout.Section>
               {this.state.completed && (
@@ -47,9 +39,11 @@ class CreateProduct extends React.Component {
                   event.preventDefault();
                   const productInput = {
                     title: this.state.name,
-                    productType: 'test'
+                    productType: 'test',
+                    id: this.state.id
                   };
-                  handleSubmit({ variables: { product: productInput } });
+                  console.log('product input', productInput);
+                  handleSubmit({ variables: { productInput } });
                 }}
               >
                 <Card sectioned>

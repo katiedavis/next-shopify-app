@@ -21,7 +21,7 @@ class Layout extends React.Component {
     const { children } = this.props;
 
     if (!this.state.workaround) {
-      return <div>loading...</div>;
+      return <div>Loading...</div>;
     }
     return (
       <AppProvider
