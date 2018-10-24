@@ -28,13 +28,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
@@ -53,21 +55,28 @@ function (_React$Component) {
   _inherits(Layout, _React$Component);
 
   function Layout() {
+    var _getPrototypeOf2;
+
     var _this;
 
     _classCallCheck(this, Layout);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Layout).call(this));
-    _this.state = {
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Layout)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
       workaround: false
-    };
+    });
+
     return _this;
   }
 
   _createClass(Layout, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      // This happens in browser - therefore we are ready to use `window`
       this.setState({
         workaround: true
       });
@@ -75,14 +84,17 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var children = this.props.children;
+
       if (!this.state.workaround) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "loading");
       }
 
-      var children = this.props;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_2__["AppProvider"] // apiKey="922b224627b67c9af7b4bd72591881f8"
-      // shopOrigin="https://webpackstore.myshopify.com"
-      , null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_4__["ApolloProvider"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_2__["AppProvider"], {
+        apiKey: "922b224627b67c9af7b4bd72591881f8",
+        shopOrigin: "https://webpackstore.myshopify.com",
+        forceRedirect: true
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_4__["ApolloProvider"], {
         client: client
       }, children));
     }
@@ -139,4 +151,4 @@ function (_App) {
 /***/ })
 
 })
-//# sourceMappingURL=_app.js.e3011043520b914745fe.hot-update.js.map
+//# sourceMappingURL=_app.js.8415f81f6e7aa9849d7e.hot-update.js.map

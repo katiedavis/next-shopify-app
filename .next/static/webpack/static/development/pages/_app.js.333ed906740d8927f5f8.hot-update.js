@@ -75,13 +75,12 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      if (!this.state.workaround) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
-      }
-
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_2__["AppProvider"] // apiKey="922b224627b67c9af7b4bd72591881f8"
-      // shopOrigin="https://webpackstore.myshopify.com"
-      , null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_4__["ApolloProvider"], {
+      var children = this.props.children;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_2__["AppProvider"], {
+        apiKey: "922b224627b67c9af7b4bd72591881f8",
+        shopOrigin: "https://webpackstore.myshopify.com",
+        forceRedirect: true
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_4__["ApolloProvider"], {
         client: client
       }, children));
     }
@@ -112,16 +111,7 @@ function (_App) {
   }]);
 
   return MyApp;
-}(next_app__WEBPACK_IMPORTED_MODULE_1___default.a); // return (
-//     <AppProvider
-//       apiKey="922b224627b67c9af7b4bd72591881f8"
-//       shopOrigin="https://webpackstore.myshopify.com"
-//     >
-//       <ApolloProvider client={client}>{children}</ApolloProvider>
-//     </AppProvider>
-//   );
-// )
-
+}(next_app__WEBPACK_IMPORTED_MODULE_1___default.a);
 
 
     (function (Component, route) {
@@ -147,4 +137,4 @@ function (_App) {
 /***/ })
 
 })
-//# sourceMappingURL=_app.js.8cbb9378456c35921693.hot-update.js.map
+//# sourceMappingURL=_app.js.333ed906740d8927f5f8.hot-update.js.map

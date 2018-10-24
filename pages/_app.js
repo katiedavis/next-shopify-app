@@ -11,10 +11,23 @@ const client = new ApolloClient({
 });
 
 class Layout extends React.Component {
+  state = { workaround: false };
+
+  componentDidMount() {
+    this.setState({ workaround: true });
+  }
   render() {
     const { children } = this.props;
+
+    if (!this.state.workaround) {
+      return <div>loading...</div>;
+    }
     return (
-      <AppProvider>
+      <AppProvider
+        apiKey="process.env.SHOPIFY_API_KEY"
+        shopOrigin="https://webpackstore.myshopify.com"
+        forceRedirect
+      >
         <ApolloProvider client={client}>{children}</ApolloProvider>
       </AppProvider>
     );
