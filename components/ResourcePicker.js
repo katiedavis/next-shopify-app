@@ -2,9 +2,10 @@ import { ResourcePicker } from '@shopify/polaris/embedded';
 import { Button } from '@shopify/polaris';
 
 class Resources extends React.Component {
-  state = { open: false };
+  state = { open: true, resources: '' };
 
   render() {
+    console.log('state', this.state);
     return (
       <div>
         <Button onClick={() => this.setState({ open: true })}>
@@ -12,11 +13,11 @@ class Resources extends React.Component {
         </Button>
         <ResourcePicker
           products
-          allowMultiple
+          allowMultiple={false}
           open={this.state.open}
           onSelection={resources => {
             console.log('Selected products: ', resources.products);
-            this.setState({ open: false });
+            this.setState({ open: false, resources: resources });
           }}
           onCancel={() => this.setState({ open: false })}
         />

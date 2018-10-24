@@ -1,14 +1,46 @@
-import Link from 'next/link';
-import { Page, Button } from '@shopify/polaris';
+import { Page, EmptyState } from '@shopify/polaris';
+import { ResourcePicker } from '@shopify/polaris/embedded';
 import CreateProduct from '../components/CreateProduct';
+class Index extends React.Component {
+  state = { open: false, resources: '' };
 
-export default () => {
-  return (
-    <Page>
-      <Link href="/about">
-        <Button>Go to About Page</Button>
-      </Link>
-      <CreateProduct />
-    </Page>
-  );
-};
+  onSelectedProducts = resources => {
+    this.setState({ open: false, resources: resources.products });
+  };
+
+  render() {
+    console.log('parent state', this.state);
+    return (
+      <Page
+        primaryAction={{
+          content: 'Add products'
+        }}
+      >
+        <EmptyState
+          heading="Add products to start"
+          action={{
+            content: 'Add Products',
+            onAction: () => this.setState({ open: true })
+          }}
+          image="https://cdn.shopify.com/s/files/1/0757/9955/files/empty-state.svg"
+        >
+          <p>To get started, add some products from your shop</p>
+        </EmptyState>
+        <ResourcePicker
+          products
+          open={this.state.open}
+          onSelection={resources => {
+            this.onSelectedProducts(resources);
+          }}
+          onCancel={() => this.setState({ open: false })}
+        />
+        {this.state.resources &&
+          this.state.resources.map(product => (
+            <CreateProduct key={product.created_at} product={product} />
+          ))}
+      </Page>
+    );
+  }
+}
+
+export default Index;

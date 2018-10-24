@@ -7,3 +7,13 @@ export const GET_SHOP = gql`
     }
   }
 `;
+
+export const GET_PRODUCT = gql`
+  query($handle: String!) {
+    shop {
+      productByHandle(handle: $handle) {
+        title
+      }
+    }
+  }
+`;

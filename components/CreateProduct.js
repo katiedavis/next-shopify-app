@@ -10,19 +10,20 @@ import {
   Layout,
   Stack
 } from '@shopify/polaris';
-import { CREATE_PRODUCT } from '../graphql/Mutation';
+import { UPDATE_PRODUCT } from '../graphql/Mutation';
 import { Mutation } from 'react-apollo';
 
 class CreateProduct extends React.Component {
   state = {
-    name: '',
-    description: '',
+    name: this.props.product.title,
+    description: this.props.product.body_html,
     category: '',
     price: '',
     completed: false,
-    test: ''
+    type: this.props.product.product_type
   };
   render() {
+    console.log(this.props);
     const { name, description, category, price } = this.state;
     const options = [
       { label: 'Today', value: 'today' },
@@ -30,10 +31,11 @@ class CreateProduct extends React.Component {
       { label: 'Last 7 days', value: 'lastWeek' }
     ];
 
+    console.log('this state', this.state);
+
     return (
-      <Mutation mutation={CREATE_PRODUCT} onCompleted={this.completedMutation}>
+      <Mutation mutation={UPDATE_PRODUCT} onCompleted={this.completedMutation}>
         {(handleSubmit, mutationResults) => {
-          console.log(mutationResults);
           return (
             <Layout.Section>
               {this.state.completed && (
@@ -45,7 +47,7 @@ class CreateProduct extends React.Component {
                   event.preventDefault();
                   const productInput = {
                     title: this.state.name,
-                    productType: 'fart machine'
+                    productType: 'test'
                   };
                   handleSubmit({ variables: { product: productInput } });
                 }}
@@ -64,20 +66,6 @@ class CreateProduct extends React.Component {
                       label="Tagline"
                       type="test"
                     />
-                    <FormLayout.Group>
-                      <Select
-                        label="Sample category"
-                        options={options}
-                        onChange={this.handleChange}
-                        value={this.state.selected}
-                      />
-                      <TextField
-                        value={price}
-                        onChange={this.handleChange('price')}
-                        label="Price"
-                        type="test"
-                      />
-                    </FormLayout.Group>
                   </FormLayout>
                 </Card>
                 <br />
