@@ -1,3 +1,3 @@
 import { TextStyle } from '@shopify/polaris';
-
-export default () => <TextStyle>hi</TextStyle>;
+import ResourcePicker from './ResourcePicker';
+export default () => <ResourcePicker />;
