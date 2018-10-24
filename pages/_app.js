@@ -3,6 +3,7 @@ import App, { Container } from 'next/app';
 import { AppProvider } from '@shopify/polaris';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
+import '@shopify/polaris/styles.css';
 
 const client = new ApolloClient({
   fetchOptions: {
