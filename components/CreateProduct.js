@@ -39,11 +39,10 @@ class CreateProduct extends React.Component {
                   event.preventDefault();
                   const productInput = {
                     title: this.state.name,
-                    productType: 'test',
-                    id: this.state.id
+                    id: `gid://shopify/Product/${this.state.id}`
                   };
                   console.log('product input', productInput);
-                  handleSubmit({ variables: { productInput } });
+                  handleSubmit({ variables: { product: productInput } });
                 }}
               >
                 <Card sectioned>

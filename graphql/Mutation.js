@@ -12,8 +12,8 @@ export const CREATE_PRODUCT = gql`
 `;
 
 export const UPDATE_PRODUCT = gql`
-  mutation productUpdate($input: ProductInput!) {
-    productUpdate(input: $input) {
+  mutation ProductUpdate($product: ProductInput!) {
+    productUpdate(input: $product) {
       userErrors {
         field
         message
