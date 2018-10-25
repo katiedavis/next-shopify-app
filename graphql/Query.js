@@ -21,7 +21,23 @@ export const GET_PRODUCT = gql`
     shop {
       productByHandle(handle: $handle) {
         title
+        handle
+        bodyHtml
       }
     }
   }
 `;
+
+export const GET_MANY_PRODUCTS = gql`
+  query getproducts($id: [ID!]!) {
+    nodes(ids: $id) {
+      ... on Product {
+        title
+        handle
+        bodyHtml
+      }
+    }
+  }
+`;
+
+// ["gid://shopify/Product/1764926324834", "gid://shopify/Product/1764926193762"]

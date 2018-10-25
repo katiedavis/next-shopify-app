@@ -4,6 +4,8 @@ import { AppProvider } from '@shopify/polaris';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import '@shopify/polaris/styles.css';
+import { Page } from '@shopify/polaris';
+import Head from 'next/head';
 
 const client = new ApolloClient({
   fetchOptions: {
@@ -11,7 +13,7 @@ const client = new ApolloClient({
   }
 });
 
-class Layout extends React.Component {
+class Wrapper extends React.Component {
   state = { workaround: false };
 
   componentDidMount() {
@@ -24,13 +26,23 @@ class Layout extends React.Component {
       return <div>Loading...</div>;
     }
     return (
-      <AppProvider
-        apiKey="process.env.SHOPIFY_API_KEY"
-        shopOrigin="https://webpackstore.myshopify.com"
-        forceRedirect
-      >
-        <ApolloProvider client={client}>{children}</ApolloProvider>
-      </AppProvider>
+      <div>
+        <Head>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1"
+            katie="hi"
+          />
+          <meta charSet="utf-8" />
+        </Head>
+        <AppProvider
+          apiKey="process.env.SHOPIFY_API_KEY"
+          shopOrigin="https://webpackstore.myshopify.com"
+          forceRedirect
+        >
+          <ApolloProvider client={client}>{children}</ApolloProvider>
+        </AppProvider>
+      </div>
     );
   }
 }
@@ -39,9 +51,16 @@ export default class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <Wrapper>
+        <Page
+          primaryAction={{
+            content: 'Add products',
+            onAction: () => this.setState({ open: true })
+          }}
+        >
+          <Component {...pageProps} />
+        </Page>
+      </Wrapper>
     );
   }
 }

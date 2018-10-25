@@ -1,21 +1,13 @@
-import { Page, EmptyState } from '@shopify/polaris';
+import { Page, EmptyState, ResourceList } from '@shopify/polaris';
 import { ResourcePicker } from '@shopify/polaris/embedded';
-import CreateProduct from '../components/CreateProduct';
+import CreateProduct from '../components/EditProduct';
+import DisplayProducts from '../components/DisplayProducts';
 class Index extends React.Component {
   state = { open: false, resources: '' };
 
-  onSelectedProducts = resources => {
-    this.setState({ open: false, resources: resources.products });
-  };
-
   render() {
     return (
-      <Page
-        primaryAction={{
-          content: 'Add products',
-          onAction: () => this.setState({ open: true })
-        }}
-      >
+      <React.Fragment>
         {!this.state.resources ? (
           <div>
             <EmptyState
@@ -32,19 +24,26 @@ class Index extends React.Component {
               products
               open={this.state.open}
               onSelection={resources => {
-                this.onSelectedProducts(resources);
+                console.log(resources);
+                const idsFromProducts = resources.products.map(product => ({
+                  id: product.id
+                }));
+                console.log('ids from product', idsFromProducts);
+                this.onSelectedProducts(idsFromProducts);
               }}
               onCancel={() => this.setState({ open: false })}
             />
           </div>
         ) : (
-          this.state.resources.map(product => (
-            <CreateProduct key={product.created_at} product={product} />
-          ))
+          <div resources={this.state.resources} />
         )}
-      </Page>
+      </React.Fragment>
     );
   }
+  onSelectedProducts = idsFromProducts => {
+    this.setState({ open: false, resources: idsFromProducts });
+    console.log(this.state);
+  };
 }
 
 export default Index;

@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@shopify/admin-graphql-api-utilities": "0.0.2",
     "@shopify/koa-shopify-auth": "^3.1.5",
     "@shopify/koa-shopify-graphql-proxy": "^2.1.2",
     "@shopify/polaris": "^2.12.1",
