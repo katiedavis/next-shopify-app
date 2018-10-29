@@ -1,10 +1,9 @@
 import React from 'react';
-import App, { Container } from 'next/app';
+import App from 'next/app';
 import { AppProvider } from '@shopify/polaris';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import '@shopify/polaris/styles.css';
-import { Page } from '@shopify/polaris';
 import Head from 'next/head';
 import ContextProvider from '../components/Context';
 

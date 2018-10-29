@@ -14,10 +14,7 @@ class ContextProvider extends React.Component {
       <Context.Provider
         value={{
           state: this.state,
-          setModalToOpen: () =>
-            this.setState({
-              open: true
-            }),
+          setModalToOpen: state => this.setState(state),
           onSelectedProducts: idsFromProducts =>
             this.setState({
               resources: idsFromProducts
@@ -26,6 +23,10 @@ class ContextProvider extends React.Component {
             this.setState({
               item: item,
               clicked: true
+            }),
+          closeModal: () =>
+            this.setState({
+              open: false
             })
         }}
       >
