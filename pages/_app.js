@@ -6,6 +6,7 @@ import { ApolloProvider } from 'react-apollo';
 import '@shopify/polaris/styles.css';
 import { Page } from '@shopify/polaris';
 import Head from 'next/head';
+import ContextProvider from '../components/Context';
 
 const client = new ApolloClient({
   fetchOptions: {
@@ -52,14 +53,9 @@ export default class MyApp extends App {
     const { Component, pageProps } = this.props;
     return (
       <Wrapper>
-        <Page
-          primaryAction={{
-            content: 'Add products',
-            onAction: () => this.setState({ open: true })
-          }}
-        >
+        <ContextProvider>
           <Component {...pageProps} />
-        </Page>
+        </ContextProvider>
       </Wrapper>
     );
   }
