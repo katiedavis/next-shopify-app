@@ -1,7 +1,5 @@
-import { Page, EmptyState, ResourceList } from '@shopify/polaris';
+import { EmptyState } from '@shopify/polaris';
 import { ResourcePicker } from '@shopify/polaris/embedded';
-import CreateProduct from '../components/EditProduct';
-import DisplayProducts from '../components/DisplayProducts';
 import { composeGid } from '@shopify/admin-graphql-api-utilities';
 import ResourceListWithProducts from '../components/ResourceListWithProducts';
 
@@ -11,6 +9,7 @@ class Index extends React.Component {
   render() {
     return (
       <React.Fragment>
+        {console.log('parent props', this.state)}
         {!this.state.resources ? (
           <div>
             <EmptyState
@@ -28,11 +27,9 @@ class Index extends React.Component {
               allowMultiple
               open={this.state.open}
               onSelection={resources => {
-                console.log(resources);
                 const idsFromProducts = resources.products.map(product =>
                   composeGid('Product', product.id)
                 );
-                console.log('ids from product', idsFromProducts);
                 this.onSelectedProducts(idsFromProducts);
               }}
               onCancel={() => this.setState({ open: false })}
@@ -46,7 +43,6 @@ class Index extends React.Component {
   }
   onSelectedProducts = idsFromProducts => {
     this.setState({ open: false, resources: idsFromProducts });
-    console.log(this.state);
   };
 }
 

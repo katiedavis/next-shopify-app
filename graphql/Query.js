@@ -39,6 +39,3 @@ export const GET_MANY_PRODUCTS = gql`
     }
   }
 `;
-
-// ["gid://shopify/Product/1764926324834", "gid://shopify/Product/1764926193762"]
-//{"id": ["gid://shopify/Product/1764926324834", "gid://shopify/Product/1764926193762"]}

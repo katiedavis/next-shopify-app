@@ -1,7 +1,7 @@
 import { Query } from 'react-apollo';
 import { GET_MANY_PRODUCTS } from '../graphql/Query';
-import { Page, ResourceList, Card } from '@shopify/polaris';
 import ResourceListWithData from './ResourceList';
+
 const ResourceListWithProducts = props => {
   const ids = props.ids;
 
@@ -10,13 +10,7 @@ const ResourceListWithProducts = props => {
       {({ loading, error, data }) => {
         if (loading) return 'Loading...';
         if (error) return `Error! ${error.message}`;
-
-        return (
-          <div>
-            {console.log('inside', data)}
-            <ResourceListWithData resources={data} />
-          </div>
-        );
+        return <ResourceListWithData resources={data} />;
       }}
     </Query>
   );

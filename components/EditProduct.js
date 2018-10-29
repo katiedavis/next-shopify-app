@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Card,
   Form,
-  Select,
   FormLayout,
   TextField,
   Banner,
@@ -23,12 +22,10 @@ class CreateProduct extends React.Component {
   };
   render() {
     const { name, description } = this.state;
-    console.log(this.props);
+
     return (
       <Mutation mutation={UPDATE_PRODUCT} onCompleted={this.completedMutation}>
         {(handleSubmit, mutationResults) => {
-          console.log(mutationResults);
-          console.log('state', this.state);
           return (
             <Layout.Section>
               {this.state.completed && (
@@ -36,13 +33,11 @@ class CreateProduct extends React.Component {
               )}
               <br />
               <Form
-                onSubmit={event => {
-                  event.preventDefault();
+                onSubmit={() => {
                   const productInput = {
                     title: this.state.name,
                     id: composeGid('Product', `${this.state.id}`)
                   };
-                  console.log('product input', productInput);
                   handleSubmit({ variables: { product: productInput } });
                 }}
               >
