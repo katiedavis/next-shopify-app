@@ -14,7 +14,7 @@ const Index = () => (
         }}
       >
         {!state.resources ? (
-          <div>
+          <React.Fragment>
             <EmptyState
               heading="Add products to start"
               action={{
@@ -37,7 +37,7 @@ const Index = () => (
               }}
               onCancel={() => updateParentState({ open: false })}
             />
-          </div>
+          </React.Fragment>
         ) : (
           <ResourceListWithProducts />
         )}

@@ -29,11 +29,10 @@ class CreateProduct extends React.Component {
             <Layout.Section>
               {this.state.completed && (
                 <Banner status="success">
-                  Successfully updated
+                  Successfully updated{' '}
                   {mutationResults.data.productUpdate.product.title}
                 </Banner>
               )}
-              <br />
               <Form
                 onSubmit={() => {
                   const productInput = {

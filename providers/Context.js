@@ -6,8 +6,7 @@ class ContextProvider extends React.Component {
     resources: '',
     open: false,
     clicked: false,
-    item: '',
-    data: ''
+    item: ''
   };
   render() {
     return (
