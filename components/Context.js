@@ -1,6 +1,6 @@
 const Context = React.createContext();
 
-// Then create a provider Component
+// First create a provider Component
 class ContextProvider extends React.Component {
   state = {
     resources: '',
@@ -24,7 +24,7 @@ class ContextProvider extends React.Component {
   }
 }
 
-// then make a consumer which will surface it
+// make a consumer which will surface it
 const ContextConsumer = Context.Consumer;
 
 export default ContextProvider;
