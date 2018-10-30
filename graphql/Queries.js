@@ -35,6 +35,7 @@ export const GET_MANY_PRODUCTS = gql`
         title
         handle
         descriptionHtml
+        id
       }
     }
   }

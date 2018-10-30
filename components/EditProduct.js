@@ -11,7 +11,6 @@ import {
 } from '@shopify/polaris';
 import { UPDATE_PRODUCT } from '../graphql/Mutations';
 import { Mutation } from 'react-apollo';
-import { composeGid } from '@shopify/admin-graphql-api-utilities';
 
 class CreateProduct extends React.Component {
   state = {
@@ -36,7 +35,7 @@ class CreateProduct extends React.Component {
                 onSubmit={() => {
                   const productInput = {
                     title: this.state.name,
-                    id: composeGid('Product', `${this.state.id}`)
+                    id: this.state.id
                   };
                   console.log('product input', productInput);
                   handleSubmit({ variables: { product: productInput } });
