@@ -9,8 +9,8 @@ import {
   Layout,
   Stack
 } from '@shopify/polaris';
-import { UPDATE_PRODUCT } from '../graphql/Mutations';
 import { Mutation } from 'react-apollo';
+import { UPDATE_PRODUCT } from '../graphql/Mutations';
 
 class CreateProduct extends React.Component {
   state = {
@@ -33,7 +33,6 @@ class CreateProduct extends React.Component {
                   {mutationResults.data.productUpdate.product.title}
                 </Banner>
               )}
-              {console.log(mutationResults)}
               <br />
               <Form
                 onSubmit={() => {
@@ -41,7 +40,6 @@ class CreateProduct extends React.Component {
                     title: this.state.name,
                     id: this.state.id
                   };
-                  console.log('product input', productInput);
                   handleSubmit({ variables: { product: productInput } });
                 }}
               >

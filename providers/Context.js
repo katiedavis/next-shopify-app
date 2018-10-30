@@ -17,7 +17,6 @@ class ContextProvider extends React.Component {
           updateParentState: state => this.setState(state)
         }}
       >
-        {console.log('provider state', this.state)}
         {this.props.children}
       </Context.Provider>
     );

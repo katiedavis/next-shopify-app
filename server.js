@@ -38,9 +38,6 @@ app.prepare().then(() => {
       scopes: ['write_products', 'read_products'],
       afterAuth(ctx) {
         const { shop, accessToken } = ctx.session;
-
-        console.log('We did it!', shop, accessToken);
-
         ctx.redirect('/');
       }
     })
