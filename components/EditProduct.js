@@ -24,12 +24,16 @@ class CreateProduct extends React.Component {
 
     return (
       <Mutation mutation={UPDATE_PRODUCT} onCompleted={this.completedMutation}>
-        {handleSubmit => {
+        {(handleSubmit, mutationResults) => {
           return (
             <Layout.Section>
               {this.state.completed && (
-                <Banner status="success">Successfully updated!</Banner>
+                <Banner status="success">
+                  Successfully updated
+                  {mutationResults.data.productUpdate.product.title}
+                </Banner>
               )}
+              {console.log(mutationResults)}
               <br />
               <Form
                 onSubmit={() => {
