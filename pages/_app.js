@@ -15,7 +15,7 @@ const client = new ApolloClient({
 
 class Wrapper extends React.Component {
   state = { workaround: false };
-
+  //this is trash to make  app provider work with ssr, it will be replaced with polaris 3.0
   componentDidMount() {
     this.setState({ workaround: true });
   }
