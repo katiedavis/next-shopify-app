@@ -5,12 +5,25 @@ import {
   FormLayout,
   TextField,
   Banner,
-  Stack,
   Layout,
   PageActions
 } from '@shopify/polaris';
 import { Mutation } from 'react-apollo';
-import { UPDATE_PRODUCT } from '../graphql/Mutations';
+import gql from 'graphql-tag';
+
+const UPDATE_PRODUCT = gql`
+  mutation ProductUpdate($product: ProductInput!) {
+    productUpdate(input: $product) {
+      userErrors {
+        field
+        message
+      }
+      product {
+        title
+      }
+    }
+  }
+`;
 
 class CreateProduct extends React.Component {
   state = {

@@ -1,8 +1,21 @@
 import { Query } from 'react-apollo';
 import { Card, ResourceList, TextStyle } from '@shopify/polaris';
-import { GET_MANY_PRODUCTS } from '../graphql/Queries';
+import gql from 'graphql-tag';
 import { ContextConsumer } from '../providers/Context';
 import EditProduct from './EditProduct';
+
+const GET_MANY_PRODUCTS = gql`
+  query getproducts($id: [ID!]!) {
+    nodes(ids: $id) {
+      ... on Product {
+        title
+        handle
+        descriptionHtml
+        id
+      }
+    }
+  }
+`;
 
 const ResourceListWithProducts = () => (
   <ContextConsumer>
