@@ -5,7 +5,7 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import '@shopify/polaris/styles.css';
 import Head from 'next/head';
-import ContextProvider from '../components/Context';
+import ContextProvider from '../providers/Context';
 
 const client = new ApolloClient({
   fetchOptions: {

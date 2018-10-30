@@ -25,7 +25,7 @@ class CreateProduct extends React.Component {
 
     return (
       <Mutation mutation={UPDATE_PRODUCT} onCompleted={this.completedMutation}>
-        {(handleSubmit, mutationResults) => {
+        {handleSubmit => {
           return (
             <Layout.Section>
               {this.state.completed && (
@@ -38,6 +38,7 @@ class CreateProduct extends React.Component {
                     title: this.state.name,
                     id: composeGid('Product', `${this.state.id}`)
                   };
+                  console.log('product input', productInput);
                   handleSubmit({ variables: { product: productInput } });
                 }}
               >
