@@ -9,7 +9,7 @@ import {
   Layout,
   Stack
 } from '@shopify/polaris';
-import { UPDATE_PRODUCT } from '../graphql/Mutation';
+import { UPDATE_PRODUCT } from '../graphql/Mutations';
 import { Mutation } from 'react-apollo';
 import { composeGid } from '@shopify/admin-graphql-api-utilities';
 

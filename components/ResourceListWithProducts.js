@@ -1,7 +1,7 @@
 import { Query } from 'react-apollo';
 import { Card, ResourceList, TextStyle } from '@shopify/polaris';
-import { GET_MANY_PRODUCTS } from '../graphql/Query';
-import { ContextConsumer } from './Context';
+import { GET_MANY_PRODUCTS } from '../graphql/Queries';
+import { ContextConsumer } from '../providers/Context';
 import EditProduct from './EditProduct';
 
 const ResourceListWithProducts = () => (

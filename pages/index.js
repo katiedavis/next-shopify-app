@@ -2,7 +2,7 @@ import { EmptyState, Page } from '@shopify/polaris';
 import { ResourcePicker } from '@shopify/polaris/embedded';
 import { composeGid } from '@shopify/admin-graphql-api-utilities';
 import ResourceListWithProducts from '../components/ResourceListWithProducts';
-import { ContextConsumer } from '../components/Context';
+import { ContextConsumer } from '../providers/Context';
 
 const Index = () => (
   <ContextConsumer>
