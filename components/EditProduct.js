@@ -5,9 +5,9 @@ import {
   FormLayout,
   TextField,
   Banner,
-  Button,
+  Stack,
   Layout,
-  Stack
+  PageActions
 } from '@shopify/polaris';
 import { Mutation } from 'react-apollo';
 import { UPDATE_PRODUCT } from '../graphql/Mutations';
@@ -26,46 +26,53 @@ class CreateProduct extends React.Component {
       <Mutation mutation={UPDATE_PRODUCT} onCompleted={this.completedMutation}>
         {(handleSubmit, mutationResults) => {
           return (
-            <Layout.Section>
-              {this.state.completed && (
-                <Banner status="success">
-                  Successfully updated{' '}
-                  {mutationResults.data.productUpdate.product.title}
-                </Banner>
-              )}
-              <Form
-                onSubmit={() => {
-                  const productInput = {
-                    title: this.state.name,
-                    id: this.state.id
-                  };
-                  handleSubmit({ variables: { product: productInput } });
-                }}
-              >
-                <Card sectioned>
-                  <FormLayout>
-                    <TextField
-                      value={name}
-                      onChange={this.handleChange('name')}
-                      label="Product name"
-                      type="name"
-                    />
-                    <TextField
-                      value={description}
-                      onChange={this.handleChange('description')}
-                      label="Tagline"
-                      type="test"
-                    />
-                  </FormLayout>
-                </Card>
-                <br />
-                <Stack distribution="trailing">
-                  <Button primary submit>
-                    Save
-                  </Button>
-                </Stack>
-              </Form>
-            </Layout.Section>
+            <React.Fragment>
+              <Layout.Section>
+                {this.state.completed && (
+                  <Banner status="success">
+                    Successfully updated{' '}
+                    {mutationResults.data.productUpdate.product.title}
+                  </Banner>
+                )}
+              </Layout.Section>
+              <Layout.Section>
+                <Form>
+                  <Card sectioned>
+                    <FormLayout>
+                      <TextField
+                        value={name}
+                        onChange={this.handleChange('name')}
+                        label="Product name"
+                        type="name"
+                      />
+                      <TextField
+                        value={description}
+                        onChange={this.handleChange('description')}
+                        label="Tagline"
+                        type="test"
+                      />
+                    </FormLayout>
+                  </Card>
+                  <br />
+                  <PageActions
+                    primaryAction={[
+                      {
+                        content: 'Save',
+                        onAction: () => {
+                          const productInput = {
+                            title: this.state.name,
+                            id: this.state.id
+                          };
+                          handleSubmit({
+                            variables: { product: productInput }
+                          });
+                        }
+                      }
+                    ]}
+                  />
+                </Form>
+              </Layout.Section>
+            </React.Fragment>
           );
         }}
       </Mutation>
