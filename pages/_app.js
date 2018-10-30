@@ -38,6 +38,7 @@ class Wrapper extends React.Component {
         <AppProvider
           apiKey="process.env.SHOPIFY_API_KEY"
           shopOrigin="https://webpackstore.myshopify.com"
+          //Will be updated to use app bridge method to get shop origin when we get our new polaris components
           forceRedirect
         >
           <ApolloProvider client={client}>{children}</ApolloProvider>
