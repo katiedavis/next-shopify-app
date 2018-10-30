@@ -14,20 +14,7 @@ class ContextProvider extends React.Component {
       <Context.Provider
         value={{
           state: this.state,
-          setModalToOpen: state => this.setState(state),
-          onSelectedProducts: idsFromProducts =>
-            this.setState({
-              resources: idsFromProducts
-            }),
-          updateStateWithProduct: item =>
-            this.setState({
-              item: item,
-              clicked: true
-            }),
-          closeModal: () =>
-            this.setState({
-              open: false
-            })
+          updateParentState: state => this.setState(state)
         }}
       >
         {console.log('provider state', this.state)}

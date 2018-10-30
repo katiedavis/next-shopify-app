@@ -1,13 +1,12 @@
 import { Query } from 'react-apollo';
 import { Card, ResourceList, TextStyle } from '@shopify/polaris';
-
 import { GET_MANY_PRODUCTS } from '../graphql/Query';
 import { ContextConsumer } from './Context';
 import EditProduct from './EditProduct';
 
 const ResourceListWithProducts = () => (
   <ContextConsumer>
-    {({ state, updateStateWithProduct }) => (
+    {({ state, updateParentState }) => (
       <Query query={GET_MANY_PRODUCTS} variables={{ id: state.resources }}>
         {({ loading, error, data }) => {
           if (loading) return 'Loading...';
@@ -22,7 +21,9 @@ const ResourceListWithProducts = () => (
                     <ResourceList.Item
                       id={item.id}
                       accessibilityLabel={`View details for ${item.title}`}
-                      onClick={() => updateStateWithProduct(item)}
+                      onClick={() =>
+                        updateParentState({ item: item, clicked: true })
+                      }
                     >
                       <h3>
                         <TextStyle variation="strong">{item.title}</TextStyle>

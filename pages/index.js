@@ -6,27 +6,20 @@ import { ContextConsumer } from '../components/Context';
 
 const Index = () => (
   <ContextConsumer>
-    {({
-      state,
-      setModalToOpen,
-      onSelectedProducts,
-      closeModal,
-      updateState
-    }) => (
+    {({ state, updateParentState }) => (
       <Page
         primaryAction={{
           content: 'Add products',
-          onAction: setModalToOpen({ open: true })
+          onAction: () => updateParentState({ open: true })
         }}
       >
-        {console.log('parent props', state)}
         {!state.resources ? (
           <div>
             <EmptyState
               heading="Add products to start"
               action={{
                 content: 'Add Products',
-                onAction: setModalToOpen
+                onAction: () => updateParentState({ open: true })
               }}
               image="https://cdn.shopify.com/s/files/1/0757/9955/files/empty-state.svg"
             >
@@ -40,9 +33,9 @@ const Index = () => (
                 const idsFromProducts = resources.products.map(product =>
                   composeGid('Product', product.id)
                 );
-                onSelectedProducts(idsFromProducts);
+                updateParentState({ resources: idsFromProducts });
               }}
-              onCancel={closeModal}
+              onCancel={() => updateParentState({ open: false })}
             />
           </div>
         ) : (
