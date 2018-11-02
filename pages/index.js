@@ -1,5 +1,4 @@
 import { EmptyState, Page } from '@shopify/polaris';
-import Router from 'next/router';
 import { ResourcePicker } from '@shopify/polaris/embedded';
 import { composeGid } from '@shopify/admin-graphql-api-utilities';
 import { ContextConsumer } from '../providers/Context';
