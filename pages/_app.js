@@ -26,7 +26,7 @@ class Wrapper extends React.Component {
       return <div>Loading...</div>;
     }
     return (
-      <div>
+      <React.Fragment>
         <Head>
           <meta
             name="viewport"
@@ -43,7 +43,7 @@ class Wrapper extends React.Component {
         >
           <ApolloProvider client={client}>{children}</ApolloProvider>
         </AppProvider>
-      </div>
+      </React.Fragment>
     );
   }
 }

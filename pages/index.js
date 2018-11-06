@@ -1,43 +1,57 @@
 import { EmptyState, Page } from '@shopify/polaris';
 import { ResourcePicker } from '@shopify/polaris/embedded';
 import { composeGid } from '@shopify/admin-graphql-api-utilities';
-import { ContextConsumer } from '../providers/Context';
+import store from 'store';
+import ResourceList from '../components/ResourceList';
 
-const Index = () => (
-  <ContextConsumer>
-    {({ state, updateParentState }) => (
+class Index extends React.Component {
+  state = {
+    emptyState: true,
+    open: false
+  };
+  render() {
+    return (
       <Page
         primaryAction={{
           content: 'Add products',
-          onAction: () => updateParentState({ open: true })
+          onAction: () => this.setState({ open: true })
         }}
       >
-        <EmptyState
-          heading="Add products to start"
-          action={{
-            content: 'Add Products',
-            onAction: () => updateParentState({ open: true })
-          }}
-          image="https://cdn.shopify.com/s/files/1/0757/9955/files/empty-state.svg"
-        >
-          <p>To get started, add some products from your shop</p>
-        </EmptyState>
-        <ResourcePicker
-          products
-          allowMultiple
-          open={state.open}
-          onSelection={resources => {
-            const idsFromProducts = resources.products.map(product =>
-              composeGid('Product', product.id)
-            );
-            updateParentState({ resources: idsFromProducts });
-            Router.push('/resourcelist');
-          }}
-          onCancel={() => updateParentState({ open: false })}
-        />
+        {!store.get('ids') ? (
+          <React.Fragment>
+            <EmptyState
+              heading="Add products to start"
+              action={{
+                content: 'Add Products',
+                onAction: () => this.setState({ open: true })
+              }}
+              image="https://cdn.shopify.com/s/files/1/0757/9955/files/empty-state.svg"
+            >
+              <p>To get started, add some products from your shop</p>
+            </EmptyState>
+            <ResourcePicker
+              products
+              allowMultiple
+              open={this.state.open}
+              onSelection={resources => {
+                const idsFromProducts = resources.products.map(product =>
+                  composeGid('Product', product.id)
+                );
+                this.setState({
+                  resources: idsFromProducts,
+                  emptyState: false
+                });
+                store.set('ids', idsFromProducts);
+              }}
+              onCancel={() => this.setState({ open: false })}
+            />
+          </React.Fragment>
+        ) : (
+          <ResourceList ids={store.get('ids')} />
+        )}
       </Page>
-    )}
-  </ContextConsumer>
-);
+    );
+  }
+}
 
 export default Index;

@@ -1,8 +1,8 @@
 import { Query } from 'react-apollo';
 import { Card, ResourceList, TextStyle, Page } from '@shopify/polaris';
 import gql from 'graphql-tag';
-import { ContextConsumer } from '../providers/Context';
-import EditProduct from '../components/EditProduct';
+import EditProduct from './EditProduct';
+import store from 'store';
 
 const GET_MANY_PRODUCTS = gql`
   query getproducts($id: [ID!]!) {
@@ -17,14 +17,18 @@ const GET_MANY_PRODUCTS = gql`
   }
 `;
 
-const ResourceListWithProducts = () => (
-  <ContextConsumer>
-    {({ state, updateParentState }) => (
-      <Query query={GET_MANY_PRODUCTS} variables={{ id: state.resources }}>
+class ResourceListWithProducts extends React.Component {
+  state = {
+    item: '',
+    viewItem: false
+  };
+  render() {
+    return (
+      <Query query={GET_MANY_PRODUCTS} variables={{ id: store.get('ids') }}>
         {({ loading, error, data }) => {
           if (loading) return 'Loading...';
           if (error) return `Error! ${error.message}`;
-          return !state.clicked ? (
+          return !this.state.item ? (
             <Page>
               <Card sectioned>
                 <ResourceList
@@ -36,7 +40,7 @@ const ResourceListWithProducts = () => (
                         id={item.id}
                         accessibilityLabel={`View details for ${item.title}`}
                         onClick={() =>
-                          updateParentState({ item: item, clicked: true })
+                          this.setState({ item: item, viewItem: true })
                         }
                       >
                         <h3>
@@ -49,12 +53,12 @@ const ResourceListWithProducts = () => (
               </Card>
             </Page>
           ) : (
-            <EditProduct product={state.item} />
+            <EditProduct product={this.state.item} />
           );
         }}
       </Query>
-    )}
-  </ContextConsumer>
-);
+    );
+  }
+}
 
 export default ResourceListWithProducts;
