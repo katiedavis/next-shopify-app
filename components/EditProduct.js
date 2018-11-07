@@ -66,7 +66,6 @@ class CreateProduct extends React.Component {
                       />
                     </FormLayout>
                   </Card>
-                  <br />
                   <PageActions
                     primaryAction={[
                       {

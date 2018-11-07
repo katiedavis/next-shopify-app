@@ -37,7 +37,7 @@
     "next-apollo": "^2.0.0",
     "nonce": "^1.0.4",
     "postcss-loader": "^3.0.0",
-    "react": "^16.5.2",
+    "react": "^16.6.1",
     "react-apollo": "^2.2.4",
     "react-dom": "^16.5.2",
     "request": "^2.88.0",

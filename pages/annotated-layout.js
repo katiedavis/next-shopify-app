@@ -29,7 +29,6 @@ class AnnotatedLayout extends React.Component {
             title="Account info"
             description="Shopify and your customers will use this information to contact you."
           >
-            {console.log(this.state)}
             <Card sectioned>
               <Form onSubmit={this.handleSubmit}>
                 <TextField
@@ -95,6 +94,7 @@ class AnnotatedLayout extends React.Component {
       phone: '',
       address: ''
     });
+    console.log('submission', this.state);
   };
 
   handleChange = field => {

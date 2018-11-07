@@ -5,7 +5,6 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import '@shopify/polaris/styles.css';
 import Head from 'next/head';
-import ContextProvider from '../providers/Context';
 
 const client = new ApolloClient({
   fetchOptions: {
@@ -14,17 +13,8 @@ const client = new ApolloClient({
 });
 
 class Wrapper extends React.Component {
-  state = { workaround: false };
-  //this is trash to make  app provider work with ssr, it will be replaced with polaris 3.0
-  componentDidMount() {
-    this.setState({ workaround: true });
-  }
   render() {
     const { children } = this.props;
-
-    if (!this.state.workaround) {
-      return <div>Loading...</div>;
-    }
     return (
       <React.Fragment>
         <Head>
@@ -37,7 +27,6 @@ class Wrapper extends React.Component {
         </Head>
         <AppProvider
           apiKey="process.env.SHOPIFY_API_KEY"
-          shopOrigin="https://webpackstore.myshopify.com"
           //Will be updated to use app bridge method to get shop origin when we get our new polaris components
           forceRedirect
         >
@@ -53,9 +42,7 @@ export default class MyApp extends App {
     const { Component, pageProps } = this.props;
     return (
       <Wrapper>
-        <ContextProvider>
-          <Component {...pageProps} />
-        </ContextProvider>
+        <Component {...pageProps} />
       </Wrapper>
     );
   }
